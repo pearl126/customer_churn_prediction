@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <p>Prediction: {{ prediction }}</p>
+    <h2>SHAP Value Summary Plot</h2>
+    <img src="data:image/png;base64,{{ shap_plot }}" alt="SHAP Summary Plot">
+
+    <h2>Prediction Distribution Pie Chart</h2>
+    <img src="data:image/png;base64,{{ pie_chart }}" alt="Prediction Distribution Pie Chart">
+</body>
+</html>

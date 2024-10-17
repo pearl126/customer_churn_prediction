@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Prediction Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        table {
+            margin-top: 20px;
+        }
+        .shap-image {
+            max-width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Batch Predictions</h1>
+        <table>
+            <tr>
+                <th>Customer Name</th>
+                <th>Prediction</th>
+                <th>SHAP Plot</th>
+            </tr>
+            {% for prediction in predictions %}
+            <tr>
+                <td>{{ prediction.Customer Name }}</td>
+                <td>{{ prediction.Prediction }}</td>
+                <td><img src="data:image/png;base64,{{ shap_plots[loop.index0] }}" alt="SHAP Plot"></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/" class="btn btn-primary">Make Another Prediction</a>
+    </div>
+</body>
+</html>
