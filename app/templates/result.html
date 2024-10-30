@@ -4,14 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prediction Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Prediction Result</h1>
-    <p>Prediction: {{ prediction }}</p>
-    <h2>SHAP Value Summary Plot</h2>
-    <img src="data:image/png;base64,{{ shap_plot }}" alt="SHAP Summary Plot">
+    <div class="container mt-5">
+        <h2 class="text-center">Prediction Result</h2>
+        
+        <div class="alert alert-info text-center">
+            <strong>Customer Name:</strong> {{ customer_name }}
+        </div>
+        
+        <div class="alert alert-success text-center">
+            <strong>Prediction:</strong> {{ prediction }}
+        </div>
 
-    <h2>Prediction Distribution Pie Chart</h2>
-    <img src="data:image/png;base64,{{ pie_chart }}" alt="Prediction Distribution Pie Chart">
+        <div class="text-center mt-4">
+            <h4>Feature Importance - Bar Graph</h4>
+            {% if bar_graph %}
+                <img src="data:image/png;base64,{{ bar_graph }}" alt="Bar Graph" class="img-fluid">
+            {% else %}
+                <p>No bar graph available for this model.</p>
+            {% endif %}
+        </div>
+
+        <div class="text-center mt-4">
+            <h4>Churn Prediction - Pie Chart</h4>
+            {% if pie_chart %}
+                <img src="data:image/png;base64,{{ pie_chart }}" alt="Pie Chart" class="img-fluid">
+            {% else %}
+                <p>No pie chart available for this model.</p>
+            {% endif %}
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-primary">Go Back to Home</a>
+            <form action="/save_prediction" method="post" style="display:inline;">
+                <input type="hidden" name="customer_name" value="{{ customer_name }}">
+                <input type="hidden" name="prediction" value="{{ prediction }}">
+                <button type="submit" class="btn btn-success">Save Prediction</button>
+            </form>
+            <a href="/index" class="btn btn-info">Make a Prediction</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
